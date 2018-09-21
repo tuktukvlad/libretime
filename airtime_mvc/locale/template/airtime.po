@@ -1257,6 +1257,12 @@ msgstr ""
 msgid "Replay Gain"
 msgstr ""
 
+#: airtime_mvc/application/controllers/LocaleController.php:94
+#: airtime_mvc/application/forms/SmartBlockCriteria.php:72
+#: airtime_mvc/application/models/Block.php:1379
+msgid "Rating"
+msgstr ""
+
 #: airtime_mvc/application/controllers/LocaleController.php:95
 msgid "Sample Rate"
 msgstr ""
