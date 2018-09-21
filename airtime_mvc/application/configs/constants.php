@@ -78,6 +78,7 @@ define('MDATA_KEY_TRACKNUMBER' , 'track_number');
 define('MDATA_KEY_CONDUCTOR'   , 'conductor');
 define('MDATA_KEY_LANGUAGE'    , 'language');
 define('MDATA_KEY_REPLAYGAIN'  , 'replay_gain');
+define('MDATA_KEY_RATING'  , 'rating');
 define('MDATA_KEY_OWNER_ID'    , 'owner_id');
 define('MDATA_KEY_CUE_IN'      , 'cuein');
 define('MDATA_KEY_CUE_OUT'     , 'cueout');
