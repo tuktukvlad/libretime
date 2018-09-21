@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Airtime 2.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 16:23+0000\n"
-"PO-Revision-Date: 2017-03-23 05:02-0400\n"
+"PO-Revision-Date: 2018-09-21 13:45+0300\n"
 "Last-Translator: Yaroslav Grebnev <yarik2720@ya.ru>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/sourcefabric/airtime/language/ru_RU/)\n"
 "Language: ru\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: airtime_mvc/application/common/DateHelper.php:213
 #, php-format
@@ -33,12 +33,12 @@ msgstr "%s год должен быть в пределах 1753 - 9999"
 #: airtime_mvc/application/common/DateHelper.php:216
 #, php-format
 msgid "%s-%s-%s is not a valid date"
-msgstr "%s - %s - %s недопустимая дата"
+msgstr "%s-%s-%s недопустимая дата"
 
 #: airtime_mvc/application/common/DateHelper.php:240
 #, php-format
 msgid "%s:%s:%s is not a valid time"
-msgstr "%s : %s : %s недопустимое время"
+msgstr "%s:%s:%s недопустимое время"
 
 #: airtime_mvc/application/common/LocaleHelper.php:26
 msgid "English"
@@ -582,7 +582,7 @@ msgstr "Зулу"
 
 #: airtime_mvc/application/common/Timezone.php:21
 msgid "Use station default"
-msgstr ""
+msgstr "Использовать по умолчанию"
 
 #: airtime_mvc/application/common/UsabilityHints.php:66
 msgid "Upload some tracks below to add them to your library!"
@@ -659,7 +659,7 @@ msgstr "Плеер"
 #: airtime_mvc/application/configs/navigation.php:55
 #: airtime_mvc/application/views/scripts/embeddablewidgets/schedule.phtml:5
 msgid "Weekly Schedule"
-msgstr "Еженедельное  планирование"
+msgstr "Еженедельное  расписание"
 
 #: airtime_mvc/application/configs/navigation.php:61
 msgid "Facebook"
@@ -746,7 +746,7 @@ msgstr "С чего начать"
 
 #: airtime_mvc/application/configs/navigation.php:190
 msgid "FAQ"
-msgstr "ЧаВо"
+msgstr "FAQ"
 
 #: airtime_mvc/application/configs/navigation.php:195
 msgid "User Manual"
@@ -903,7 +903,7 @@ msgstr "Опубликовать..."
 #: airtime_mvc/application/controllers/LibraryController.php:129
 #: airtime_mvc/application/controllers/ScheduleController.php:704
 msgid "Download"
-msgstr "Загрузка"
+msgstr "Скачать"
 
 #: airtime_mvc/application/controllers/LibraryController.php:147
 msgid "View track"
@@ -958,7 +958,7 @@ msgstr "Запись:"
 
 #: airtime_mvc/application/controllers/LocaleController.php:29
 msgid "Master Stream"
-msgstr "Master-Steam"
+msgstr "Master Steam"
 
 #: airtime_mvc/application/controllers/LocaleController.php:30
 msgid "Live Stream"
@@ -986,23 +986,23 @@ msgstr "Доступна новая версия:"
 
 #: airtime_mvc/application/controllers/LocaleController.php:37
 msgid "You have a pre-release version of LibreTime intalled."
-msgstr ""
+msgstr "У Вас установлена предварительная версия LibreTime."
 
 #: airtime_mvc/application/controllers/LocaleController.php:38
 msgid "A patch update for your LibreTime installation is available."
-msgstr ""
+msgstr "Доступно патч для Вашей версии LibreTime."
 
 #: airtime_mvc/application/controllers/LocaleController.php:39
 msgid "A feature update for your LibreTime installation is available."
-msgstr ""
+msgstr "Доступно обновление Вашей версии LibreTime."
 
 #: airtime_mvc/application/controllers/LocaleController.php:40
 msgid "A major update for your LibreTime installation is available."
-msgstr ""
+msgstr "Доступно основное обновление для Вашей версии LibreTime."
 
 #: airtime_mvc/application/controllers/LocaleController.php:41
 msgid "Multiple major updates for LibreTime installation are available. Please upgrade as soon as possible."
-msgstr ""
+msgstr "Доступны несколько основных обновлений для Вашей версии LibreTime. Пожалуйста, обновитесь как можно скорее."
 
 #: airtime_mvc/application/controllers/LocaleController.php:43
 msgid "Add to current playlist"
@@ -1072,7 +1072,7 @@ msgstr "Узнать больше о веб-потоках"
 
 #: airtime_mvc/application/controllers/LocaleController.php:61
 msgid "Click 'New' to create one."
-msgstr "Выберите 'Новый' для создания."
+msgstr "Нажмите 'Новый' для создания."
 
 #: airtime_mvc/application/controllers/LocaleController.php:65
 msgid "Edit Metadata"
@@ -1100,11 +1100,11 @@ msgstr "Отменить все выделения"
 
 #: airtime_mvc/application/controllers/LocaleController.php:71
 msgid "Are you sure you want to delete the selected item(s)?"
-msgstr "Вы действительно хотите удалить выделенное?"
+msgstr "Вы действительно хотите удалить выделенные элементы?"
 
 #: airtime_mvc/application/controllers/LocaleController.php:72
 msgid "Scheduled"
-msgstr "Запланирован в программе"
+msgstr "Запланирован"
 
 #: airtime_mvc/application/controllers/LocaleController.php:73
 #: airtime_mvc/application/views/scripts/partialviews/dashboard-sub-nav.php:3
@@ -1255,6 +1255,12 @@ msgstr "Настроение"
 #: airtime_mvc/application/models/Block.php:1378
 msgid "Owner"
 msgstr "Загрузил"
+
+#: airtime_mvc/application/controllers/LocaleController.php:94
+#: airtime_mvc/application/forms/SmartBlockCriteria.php:72
+#: airtime_mvc/application/models/Block.php:1379
+msgid "Rating"
+msgstr "Рейтинг"
 
 #: airtime_mvc/application/controllers/LocaleController.php:94
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:72
@@ -1507,7 +1513,7 @@ msgstr "начинается с"
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:96
 #: airtime_mvc/application/models/Block.php:1395
 msgid "ends with"
-msgstr "заканчивается"
+msgstr "заканчивается на"
 
 #: airtime_mvc/application/controllers/LocaleController.php:162
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:109
@@ -1682,7 +1688,7 @@ msgstr "60мин"
 
 #: airtime_mvc/application/controllers/LocaleController.php:214
 msgid "Retreiving data from the server..."
-msgstr "Retreiving данных с сервера ..."
+msgstr "Получение данных с сервера ..."
 
 #: airtime_mvc/application/controllers/LocaleController.php:220
 msgid "This show has no scheduled content."
@@ -1694,52 +1700,52 @@ msgstr "Данная программа заполнена не до конца.
 
 #: airtime_mvc/application/controllers/LocaleController.php:225
 msgid "January"
-msgstr "января"
+msgstr "Января"
 
 #: airtime_mvc/application/controllers/LocaleController.php:226
 msgid "February"
-msgstr "февраля"
+msgstr "Февраля"
 
 #: airtime_mvc/application/controllers/LocaleController.php:227
 msgid "March"
-msgstr "марта"
+msgstr "Марта"
 
 #: airtime_mvc/application/controllers/LocaleController.php:228
 msgid "April"
-msgstr "апреля"
+msgstr "Апреля"
 
 #: airtime_mvc/application/controllers/LocaleController.php:229
 #: airtime_mvc/application/controllers/LocaleController.php:241
 msgid "May"
-msgstr "мая"
+msgstr "Мая"
 
 #: airtime_mvc/application/controllers/LocaleController.php:230
 msgid "June"
-msgstr "июня"
+msgstr "Июня"
 
 #: airtime_mvc/application/controllers/LocaleController.php:231
 msgid "July"
-msgstr "июля"
+msgstr "Июля"
 
 #: airtime_mvc/application/controllers/LocaleController.php:232
 msgid "August"
-msgstr "августа"
+msgstr "Августа"
 
 #: airtime_mvc/application/controllers/LocaleController.php:233
 msgid "September"
-msgstr "сентября"
+msgstr "Сентября"
 
 #: airtime_mvc/application/controllers/LocaleController.php:234
 msgid "October"
-msgstr "октября"
+msgstr "Октября"
 
 #: airtime_mvc/application/controllers/LocaleController.php:235
 msgid "November"
-msgstr "ноября"
+msgstr "Ноября"
 
 #: airtime_mvc/application/controllers/LocaleController.php:236
 msgid "December"
-msgstr "декабря"
+msgstr "Декабря"
 
 #: airtime_mvc/application/controllers/LocaleController.php:237
 msgid "Jan"
@@ -1898,7 +1904,7 @@ msgstr "Удалить все содержание?"
 
 #: airtime_mvc/application/controllers/LocaleController.php:276
 msgid "Delete selected item(s)?"
-msgstr "Удалить выбранны(е)й элемент(ы)?"
+msgstr "Удалить выбранные элементы?"
 
 #: airtime_mvc/application/controllers/LocaleController.php:277
 #: airtime_mvc/application/views/scripts/schedule/show-content-dialog.phtml:5
@@ -1927,7 +1933,7 @@ msgstr "записи"
 
 #: airtime_mvc/application/controllers/LocaleController.php:283
 msgid "There are no shows scheduled during the specified time period."
-msgstr ""
+msgstr "В течение указанного периода ничего не запланировано."
 
 #: airtime_mvc/application/controllers/LocaleController.php:289
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:57
@@ -1946,7 +1952,7 @@ msgstr "Окончание звучания"
 #: airtime_mvc/application/controllers/LocaleController.php:291
 #: airtime_mvc/application/layouts/scripts/layout.phtml:175
 msgid "Fade In"
-msgstr "Сведение"
+msgstr "Возростание"
 
 #: airtime_mvc/application/controllers/LocaleController.php:292
 #: airtime_mvc/application/layouts/scripts/layout.phtml:176
@@ -2191,7 +2197,7 @@ msgstr "гггг-мм-дд"
 
 #: airtime_mvc/application/controllers/LocaleController.php:359
 msgid "hh:mm:ss.t"
-msgstr "чч: мм: сс"
+msgstr "чч:мм:сс"
 
 #: airtime_mvc/application/controllers/LocaleController.php:360
 msgid "kHz"
@@ -2292,9 +2298,8 @@ msgid "File size error."
 msgstr "Невереный размер файла."
 
 #: airtime_mvc/application/controllers/LocaleController.php:391
-#, fuzzy
 msgid "File count error."
-msgstr "Ошибка подсчета файла"
+msgstr "Ошибка подсчета файла."
 
 #: airtime_mvc/application/controllers/LocaleController.php:392
 msgid "Init error."
@@ -2370,7 +2375,7 @@ msgstr "Скопировано %s строк %s в буфер обмена"
 #: airtime_mvc/application/controllers/LocaleController.php:411
 #, php-format
 msgid "%sPrint view%sPlease use your browser's print function to print this table. Press escape when finished."
-msgstr ""
+msgstr "%sПечат просмотра%sПожалуйста, используйте функцию печати в брузере для этой таблицы. При завершении нажмите клавишу ESC"
 
 #: airtime_mvc/application/controllers/LocaleController.php:412
 msgid "New Show"
@@ -2555,7 +2560,7 @@ msgstr "1 час нужно подождать до ретрансляции"
 
 #: airtime_mvc/application/forms/AddShowAutoPlaylist.php:18
 msgid "Auto Schedule Playlist ?"
-msgstr ""
+msgstr "Автоматический плейлист"
 
 #: airtime_mvc/application/forms/AddShowAutoPlaylist.php:25
 msgid "Select Playlist"
@@ -2736,11 +2741,11 @@ msgstr "Описание:"
 
 #: airtime_mvc/application/forms/AddShowWhat.php:69
 msgid "Instance Description:"
-msgstr ""
+msgstr "Описание:"
 
 #: airtime_mvc/application/forms/AddShowWhen.php:16
 msgid "'%value%' does not fit the time format 'HH:mm'"
-msgstr "'%value%' не соответствует формату времени 'HH:mm'"
+msgstr "'%value%' не соответствует формату времени 'ЧЧ:мм'"
 
 #: airtime_mvc/application/forms/AddShowWhen.php:22
 msgid "Start Time:"
@@ -3044,7 +3049,7 @@ msgstr "Пожалуйста введите время в секундах (пр
 
 #: airtime_mvc/application/forms/GeneralPreferences.php:78
 msgid "Default Fade In (s):"
-msgstr "Сведение по умолчанию:"
+msgstr "Возрастание по умолчанию:"
 
 #: airtime_mvc/application/forms/GeneralPreferences.php:92
 msgid "Default Fade Out (s):"
@@ -3085,7 +3090,6 @@ msgstr ""
 "                                            на внешние виджеты, которые могут быть встроены в ваш сайт."
 
 #: airtime_mvc/application/forms/GeneralPreferences.php:141
-#, fuzzy
 msgid "Allowed CORS URLs"
 msgstr "Разрешенные адреса CORS"
 
@@ -3136,7 +3140,7 @@ msgstr "Пароли не совпадают"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:19
 msgid "Auto Switch Off:"
-msgstr "Авто откоючение внешнего потока:"
+msgstr "Авто отключение внешнего потока:"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:25
 msgid "Auto Switch On:"
@@ -3144,15 +3148,15 @@ msgstr "Авто включение внешнего потока:"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:31
 msgid "Switch Transition Fade (s):"
-msgstr "Затухание при переключении (сек):"
+msgstr "Сведение при переключении (сек):"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:66
 msgid "Master Source Host:"
-msgstr "Адрес Master Source:"
+msgstr "Адрес для источника Master:"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:78
 msgid "Master Source Port:"
-msgstr "Порт Master Source:"
+msgstr "Порт для источника Master:"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:81
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:111
@@ -3162,19 +3166,19 @@ msgstr "Разрешены только числа."
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:89
 msgid "Master Source Mount:"
-msgstr "Источник подключения Мастер:"
+msgstr "Точка подключения Master:"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:99
 msgid "Show Source Host:"
-msgstr "Хост источника Шоу:"
+msgstr "Адрес для источника Show:"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:108
 msgid "Show Source Port:"
-msgstr "Порт источника Шоу:"
+msgstr "Порт для источника Show:"
 
 #: airtime_mvc/application/forms/LiveStreamingPreferences.php:116
 msgid "Show Source Mount:"
-msgstr "Точка подключения источника Шоу:"
+msgstr "Точка подключения Show:"
 
 #: airtime_mvc/application/forms/Login.php:81
 #: airtime_mvc/application/views/scripts/index/index.phtml:30
@@ -3201,7 +3205,7 @@ msgstr "Подтверждение пароля не совпадает с ва�
 
 #: airtime_mvc/application/forms/PasswordRestore.php:14
 msgid "Email"
-msgstr "Электронная почта:"
+msgstr "Электронная почта"
 
 #: airtime_mvc/application/forms/PasswordRestore.php:25
 #: airtime_mvc/application/forms/StreamSettingSubForm.php:164
@@ -3249,7 +3253,7 @@ msgstr "Встраиваемый код:"
 
 #: airtime_mvc/application/forms/Player.php:72
 msgid "Copy this code and paste it into your website's HTML to embed the player in your site."
-msgstr "Добавьте этот код  в код  своего сайта, чтобы добавить плеер."
+msgstr "Добавьте этот код  в тело своего сайта, чтобы добавить плеер."
 
 #: airtime_mvc/application/forms/Player.php:77
 #: airtime_mvc/application/views/scripts/embeddablewidgets/schedule.phtml:14
@@ -3263,12 +3267,12 @@ msgstr "Приватность ленты"
 #: airtime_mvc/application/forms/PodcastPreferences.php:10
 #: airtime_mvc/application/forms/SoundCloudPreferences.php:35
 msgid "Public"
-msgstr "Публичный"
+msgstr "Публичная"
 
 #: airtime_mvc/application/forms/PodcastPreferences.php:11
 #: airtime_mvc/application/forms/SoundCloudPreferences.php:36
 msgid "Private"
-msgstr "Частный"
+msgstr "Частная"
 
 #: airtime_mvc/application/forms/RegisterAirtime.php:39
 #: airtime_mvc/application/forms/SupportSettings.php:31
@@ -3288,7 +3292,7 @@ msgstr "Страна:"
 #: airtime_mvc/application/forms/RegisterAirtime.php:84
 #: airtime_mvc/application/forms/SupportSettings.php:76
 msgid "City:"
-msgstr "Город"
+msgstr "Город:"
 
 #: airtime_mvc/application/forms/RegisterAirtime.php:96
 #: airtime_mvc/application/forms/SupportSettings.php:88
@@ -3299,13 +3303,13 @@ msgstr "Описание станции:"
 #: airtime_mvc/application/forms/SupportSettings.php:108
 #, php-format
 msgid "Promote my station on %s"
-msgstr "Пиарить мою станцию на  %s"
+msgstr "Продвигать станцию на  %s"
 
 #: airtime_mvc/application/forms/RegisterAirtime.php:151
 #: airtime_mvc/application/forms/SupportSettings.php:120
 #, php-format
 msgid "By checking this box, I agree to %s's %sprivacy policy%s."
-msgstr "Устанавливая данную отметку я соглашаюсь с %s %sполитикой приватности%s."
+msgstr "Устанавливая данную отметку я соглашаюсь с %s %sполитикой конфиденциальности%s."
 
 #: airtime_mvc/application/forms/RegisterAirtime.php:169
 #: airtime_mvc/application/forms/SupportSettings.php:143
@@ -3337,7 +3341,7 @@ msgstr "Выбрать критерии"
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:52
 #: airtime_mvc/application/models/Block.php:1358
 msgid "Bit Rate (Kbps)"
-msgstr "Bit Rate (Kbps)"
+msgstr "Битрейт (Кбит/с)"
 
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:59
 #: airtime_mvc/application/forms/StreamSettingSubForm.php:148
@@ -3351,7 +3355,7 @@ msgstr "Описание"
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:73
 #: airtime_mvc/application/models/Block.php:1380
 msgid "Sample Rate (kHz)"
-msgstr "Частота дискретизации (кГц)"
+msgstr "Частота (кГц)"
 
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:121
 msgid "hours"
@@ -3447,7 +3451,7 @@ msgstr "\"Длительность\" должна быть в формате '00
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:570
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:583
 msgid "The value should be in timestamp format (e.g. 0000-00-00 or 0000-00-00 00:00:00)"
-msgstr "Значение должно быть в формате временной метки (например, 0000-00-00 или 0000-00-00 00:00:00)"
+msgstr "Значение должно быть в формате временной отметки (например, 0000-00-00 или 0000-00-00 00:00:00)"
 
 #: airtime_mvc/application/forms/SmartBlockCriteria.php:597
 msgid "The value has to be numeric"
@@ -3597,11 +3601,11 @@ msgstr "Тип потока:"
 #: airtime_mvc/application/forms/StreamSettingSubForm.php:74
 #: airtime_mvc/application/views/scripts/library/get-file-metadata.ajax.phtml:15
 msgid "Bit Rate:"
-msgstr "Bit Rate:"
+msgstr "Битрейт:"
 
 #: airtime_mvc/application/forms/StreamSettingSubForm.php:82
 msgid "Service Type:"
-msgstr "Тип услуги:"
+msgstr "Тип сервера:"
 
 #: airtime_mvc/application/forms/StreamSettingSubForm.php:90
 msgid "Channels:"
@@ -3706,7 +3710,7 @@ msgstr "Загрузить"
 #: airtime_mvc/application/views/scripts/showbuilder/builderDialog.phtml:10
 #: airtime_mvc/application/views/scripts/showbuilder/index.phtml:5
 msgid "Dashboard"
-msgstr "Панель управления"
+msgstr "Панель"
 
 #: airtime_mvc/application/layouts/scripts/layout.phtml:87
 msgid "Podcasts"
@@ -3906,7 +3910,7 @@ msgstr "Выберите страну"
 
 #: airtime_mvc/application/models/Schedule.php:206
 msgid "livestream"
-msgstr "Живой аудио-поток"
+msgstr "Livestream"
 
 #: airtime_mvc/application/models/Scheduler.php:77
 msgid "Cannot move items out of linked shows"
@@ -3986,7 +3990,7 @@ msgstr "Длительность указать в формате \"00ч 00ми�
 
 #: airtime_mvc/application/models/Webstream.php:184
 msgid "URL should be of form \"http://domain\""
-msgstr "URL указать в формате \"http://домен\""
+msgstr "URL указать в формате \"http://domain.com\""
 
 #: airtime_mvc/application/models/Webstream.php:187
 msgid "URL should be 512 characters or less"
@@ -4175,7 +4179,7 @@ msgstr "Как использовать %s для автоматизации в�
 
 #: airtime_mvc/application/views/scripts/dashboard/help.phtml:6
 msgid "Upload audio tracks"
-msgstr "Загрузить аудио теки"
+msgstr "Загрузить аудио треки"
 
 #: airtime_mvc/application/views/scripts/dashboard/help.phtml:7
 msgid "Click the 'Upload' button in the left corner to upload tracks to your library."
@@ -4224,7 +4228,7 @@ msgstr "Далее"
 
 #: airtime_mvc/application/views/scripts/embed/weekly-program.phtml:87
 msgid "Looks like there are no shows scheduled on this day."
-msgstr ""
+msgstr "Похоже, в этот день не запланировано никаких программ."
 
 #: airtime_mvc/application/views/scripts/embeddablewidgets/facebook.phtml:5
 msgid "Facebook Radio Player"
@@ -4278,7 +4282,7 @@ msgstr "Источник Show"
 
 #: airtime_mvc/application/views/scripts/form/add-show-live-stream.phtml:12
 msgid "DJs can use these settings to connect with compatible software and broadcast live during this show. Assign a DJ below."
-msgstr "DJ могут использовать эти настройки для подключения совместимого программного обеспечения и вещать в прямом эфире во время текущей программы. Назначьте DJ ниже."
+msgstr "DJ могут использовать эти настройки для подключения и вещания в прямом эфире во время текущей программы. Назначьте DJ ниже."
 
 #: airtime_mvc/application/views/scripts/form/add-show-rebroadcast-absolute.phtml:4
 msgid "Choose Days:"
@@ -4339,7 +4343,7 @@ msgstr "Опасные настройки"
 
 #: airtime_mvc/application/views/scripts/form/preferences_livestream.phtml:1
 msgid "Live Broadcasting"
-msgstr "Живое вещание"
+msgstr "Live вещание"
 
 #: airtime_mvc/application/views/scripts/form/preferences_livestream.phtml:11
 #: airtime_mvc/application/views/scripts/partialviews/header.phtml:30
@@ -4367,7 +4371,7 @@ msgstr "Сброс"
 
 #: airtime_mvc/application/views/scripts/form/preferences_livestream.phtml:32
 msgid "DJs can use these settings in their broadcasting software to broadcast live only during shows assigned to them."
-msgstr "Ди Джеи могут использовать эти настройки в приложениях для вещания, только когда программы назначены им."
+msgstr "DJs могут использовать эти настройки в приложениях для вещания, только когда программы назначены им."
 
 #: airtime_mvc/application/views/scripts/form/preferences_watched_dirs.phtml:9
 #: airtime_mvc/application/views/scripts/form/preferences_watched_dirs.phtml:27
@@ -4476,7 +4480,7 @@ msgstr "Файлы соответствуют критериям"
 
 #: airtime_mvc/application/views/scripts/form/stream-setting-form.phtml:4
 msgid "Stream "
-msgstr "аудиопоток "
+msgstr "Аудиопоток "
 
 #: airtime_mvc/application/views/scripts/form/stream-setting-form.phtml:84
 msgid "Additional Options"
@@ -4691,7 +4695,7 @@ msgstr "Ваш ознакомительный период истекает че
 #: airtime_mvc/application/views/scripts/playlist/playlist.phtml:40
 #: airtime_mvc/application/views/scripts/playlist/smart-block.phtml:46
 msgid "Toggle Details"
-msgstr "отобразить Подробнее"
+msgstr "Показать детали"
 
 #: airtime_mvc/application/views/scripts/playlist/playlist.phtml:44
 msgid "Shuffle playlist"
@@ -4713,7 +4717,7 @@ msgstr "Очистить"
 
 #: airtime_mvc/application/views/scripts/playlist/playlist.phtml:60
 msgid "Fade in:  "
-msgstr "Сведение(сек):"
+msgstr "Возрастание(сек):"
 
 #: airtime_mvc/application/views/scripts/playlist/playlist.phtml:63
 #: airtime_mvc/application/views/scripts/playlist/set-fade.phtml:6
@@ -4741,7 +4745,7 @@ msgstr "Начало звучания: "
 #: airtime_mvc/application/views/scripts/playlist/set-cue.phtml:5
 #: airtime_mvc/application/views/scripts/playlist/set-cue.phtml:12
 msgid "(hh:mm:ss.t)"
-msgstr "(чч: мм: сс)"
+msgstr "(чч:мм:сс)"
 
 #: airtime_mvc/application/views/scripts/playlist/set-cue.phtml:12
 msgid "Cue Out: "
@@ -4759,15 +4763,15 @@ msgstr "(сс)"
 #: airtime_mvc/application/views/scripts/playlist/set-fade.phtml:19
 #: airtime_mvc/application/views/scripts/playlist/smart-block.phtml:68
 msgid "Fade in: "
-msgstr "Сведение(сек):"
+msgstr "Возрастание(сек):"
 
 #: airtime_mvc/application/views/scripts/playlist/smart-block.phtml:60
 msgid "Remove all content from this smart block"
-msgstr "Удалить все треки из этого смарт блока"
+msgstr "Удалить все треки из этого умного блока"
 
 #: airtime_mvc/application/views/scripts/playlist/smart-block.phtml:93
 msgid "No smart block currently open"
-msgstr "Нет открытого Смарт Блока"
+msgstr "Нет открытого Умного Блока"
 
 #: airtime_mvc/application/views/scripts/playlist/update.phtml:56
 msgid "Expand Static Block"
@@ -4783,7 +4787,7 @@ msgstr "Выберите критерии поиска, выше и нажмит
 
 #: airtime_mvc/application/views/scripts/playlist/update.phtml:140
 msgid "A track list will be generated when you schedule this smart block into a show."
-msgstr "Список воспроизведения будет составлен, как только вы добавите Смарт блок в Программу."
+msgstr "Список воспроизведения будет составлен, как только вы добавите Умный блок в Программу."
 
 #: airtime_mvc/application/views/scripts/playlist/update.phtml:143
 msgid "Drag tracks here from your library to add them to the playlist"
@@ -4791,15 +4795,15 @@ msgstr "Перетащите треки суда из библиотеки, чт
 
 #: airtime_mvc/application/views/scripts/playouthistory/index.phtml:8
 msgid "Log Sheet"
-msgstr "Список Логов"
+msgstr "Список Треков"
 
 #: airtime_mvc/application/views/scripts/playouthistory/index.phtml:9
 msgid "File Summary"
-msgstr "Файлы Суммарно"
+msgstr "Данные о файлах"
 
 #: airtime_mvc/application/views/scripts/playouthistory/index.phtml:11
 msgid "Show Summary"
-msgstr "Данные по прграмме"
+msgstr "Данные по программе"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/index.phtml:3
 msgid "Playout History Templates"
@@ -4807,35 +4811,35 @@ msgstr "Шаблоны Историй воспроизведений треко�
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/index.phtml:5
 msgid "Log Sheet Templates"
-msgstr "Шаблоны логов"
+msgstr "Шаблоны Списка Треков"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/index.phtml:6
 msgid "New Log Sheet Template"
-msgstr "Новый Журнал Листа Шаблона"
+msgstr "Новый шаблон Списка Треков"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/index.phtml:9
 msgid "No Log Sheet Templates"
-msgstr "Нет шаблона лога"
+msgstr "Нет шаблона Списка Треков"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/index.phtml:36
 msgid "File Summary Templates"
-msgstr "Шаблоны данных о файлах"
+msgstr "Шаблоны Данных о файлах"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/index.phtml:37
 msgid "New File Summary Template"
-msgstr "Новый шаблон данных о файлах"
+msgstr "Новый шаблон Данных о файлах"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/index.phtml:40
 msgid "No File Summary Templates"
-msgstr "Нет шаблонов данных о файлах"
+msgstr "Нет шаблонов Данных о файлах"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/template-contents.phtml:2
 msgid "Creating File Summary Template"
-msgstr "Создание шаблона по файлам"
+msgstr "Создание шаблона Данных о файлах"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/template-contents.phtml:4
 msgid "Creating Log Sheet Template"
-msgstr "Создание шаблона лога"
+msgstr "Создание шаблона Списка Треков"
 
 #: airtime_mvc/application/views/scripts/playouthistorytemplate/template-contents.phtml:46
 msgid "Add more elements"
@@ -4928,7 +4932,7 @@ msgstr "Итого"
 
 #: airtime_mvc/application/views/scripts/podcast/station.phtml:61
 msgid "Subtitle"
-msgstr "Короткое описание"
+msgstr "Краткое описание"
 
 #: airtime_mvc/application/views/scripts/podcast/station.phtml:64
 msgid "Category"
