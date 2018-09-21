@@ -850,6 +850,7 @@ var criteriaTypes = {
     "album_title"  : "s",
     "bit_rate"     : "n",
     "bpm"          : "n",
+    "bpm"          : "n",
     "composer"     : "s",
     "conductor"    : "s",
     "copyright"    : "s",

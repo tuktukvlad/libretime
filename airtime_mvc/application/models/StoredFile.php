@@ -33,6 +33,7 @@ class Application_Model_StoredFile
         "mood"         => "DbMood",
         "track_number" => "DbTrackNumber",
         "bpm"          => "DbBpm",
+        "rating"       => "DbRating",
         "label"        => "DbLabel",
         "composer"     => "DbComposer",
         "encoded_by"   => "DbEncodedBy",
@@ -667,7 +668,7 @@ SQL;
     {
         return array("id", "track_title", "artist_name", "album_title",
         "genre", "length", "year", "utime", "mtime", "ftype",
-        "track_number", "mood", "bpm", "composer", "info_url",
+        "track_number", "mood", "bpm", "rating", "composer", "info_url",
         "bit_rate", "sample_rate", "isrc_number", "encoded_by", "label",
         "copyright", "mime", "language", "filepath", "owner_id",
         "conductor", "replay_gain", "lptime", "is_playlist", "is_scheduled",
@@ -723,7 +724,13 @@ SQL;
                 $blSelect[]     = "NULL::NUMERIC AS ".$key;
                 $fileSelect[]   = $key;
                 $streamSelect[] = "NULL::NUMERIC AS ".$key;
-            } 
+            }
+            elseif ($key === "rating") {
+                $plSelect[]     = "NULL::NUMERIC AS ".$key;
+                $blSelect[]     = "NULL::NUMERIC AS ".$key;
+                $fileSelect[]   = $key;
+                $streamSelect[] = "NULL::NUMERIC AS ".$key;
+            }  
             elseif ($key === "lptime") {
                 $plSelect[]     = "NULL::TIMESTAMP AS ".$key;
                 $blSelect[]     = "NULL::TIMESTAMP AS ".$key;

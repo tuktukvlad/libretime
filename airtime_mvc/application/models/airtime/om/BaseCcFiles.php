@@ -3996,7 +3996,7 @@ abstract class BaseCcFiles extends BaseObject implements Persistent
                         $stmt->bindValue($identifier, $this->bpm, PDO::PARAM_INT);
                         break;
                     case '"rating"':
-                        $stmt->bindValue($identifier, $this->rating, PDO::PARAM_STR);
+                        $stmt->bindValue($identifier, $this->rating, PDO::PARAM_INT);
                         break;
                     case '"encoded_by"':
                         $stmt->bindValue($identifier, $this->encoded_by, PDO::PARAM_STR);
