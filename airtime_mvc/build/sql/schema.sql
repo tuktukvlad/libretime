@@ -51,7 +51,7 @@ CREATE TABLE "cc_files"
     "channels" INTEGER,
     "url" VARCHAR(1024),
     "bpm" INTEGER,
-    "rating" VARCHAR(8),
+    "rating" NUMERIC(2,1) DEFAULT '0.0' NOT NULL,
     "encoded_by" VARCHAR(255),
     "disc_number" VARCHAR(8),
     "mood" VARCHAR(64),
