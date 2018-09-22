@@ -458,6 +458,14 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
         }
         $this->addElement($notPlayed);
 
+        $notScheduled = new Zend_Form_Element_Checkbox('sp_notscheduled_tracks');
+        $notScheduled->setDecorators(array('viewHelper'))
+                     ->setLabel("Не запланированные треки:");
+        if (isset($storedCrit["notscheduled_tracks"])) {
+                $notScheduled->setChecked($storedCrit["notscheduled_tracks"]["value"] == 1?true:false);
+        }
+        $this->addElement($notScheduled);
+
 
 
         $sort = new Zend_Form_Element_Select('sp_sort_options');

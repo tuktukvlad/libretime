@@ -1279,6 +1279,14 @@ SQL;
         ->setDbValue($p_criteriaData['etc']['sp_notplayed_tracks'])
         ->setDbBlockId($this->id)
         ->save();
+
+        // Добавляем критерию в базу - Не запланированные треки
+        $qry = new CcBlockcriteria();
+        $qry->setDbCriteria("notscheduled_tracks")
+        ->setDbModifier("N/A")
+        ->setDbValue($p_criteriaData['etc']['sp_notscheduled_tracks'])
+        ->setDbBlockId($this->id)
+        ->save();
     }
 
     /**
@@ -1462,6 +1470,8 @@ SQL;
                 $storedCrit["repeat_tracks"] = array("value"=>$value);
             } else if($criteria == "notplayed_tracks") {
                 $storedCrit["notplayed_tracks"] = array("value"=>$value);
+            } else if($criteria == "notscheduled_tracks") {
+                $storedCrit["notscheduled_tracks"] = array("value"=>$value);
             }
              else if($criteria == "sort") {
                 $storedCrit["sort"] = array("value"=>$value);
@@ -1639,6 +1649,13 @@ SQL;
         if (isset($storedCrit["notplayed_tracks"])) {
             if ($storedCrit["notplayed_tracks"]["value"]) {
                 $qry->add("lptime", null, Criteria::ISNULL);
+            }
+        }
+
+        $notScheduled = 0;
+        if (isset($storedCrit["notscheduled_tracks"])) {
+            if ($storedCrit["notscheduled_tracks"]["value"]) {
+                $qry->add("is_scheduled", "false", Criteria::EQUAL);
             }
         }
         
