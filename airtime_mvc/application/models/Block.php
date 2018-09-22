@@ -1270,6 +1270,15 @@ SQL;
         ->setDbValue($p_criteriaData['etc']['sp_repeat_tracks'])
         ->setDbBlockId($this->id)
         ->save();
+
+
+         // Добавляем критерию в базу - Не проигранные треки
+        $qry = new CcBlockcriteria();
+        $qry->setDbCriteria("notplayed_tracks")
+        ->setDbModifier("N/A")
+        ->setDbValue($p_criteriaData['etc']['sp_notplayed_tracks'])
+        ->setDbBlockId($this->id)
+        ->save();
     }
 
     /**
@@ -1451,7 +1460,10 @@ SQL;
                     "display_modifier"=>_($modifier));
             } else if($criteria == "repeat_tracks") {
                 $storedCrit["repeat_tracks"] = array("value"=>$value);
-            } else if($criteria == "sort") {
+            } else if($criteria == "notplayed_tracks") {
+                $storedCrit["notplayed_tracks"] = array("value"=>$value);
+            }
+             else if($criteria == "sort") {
                 $storedCrit["sort"] = array("value"=>$value);
             } else {
                 $storedCrit["crit"][$criteria][] = array(
@@ -1596,6 +1608,9 @@ SQL;
         }
         else if ($sortTracks == 'random') {
             $qry->addAscendingOrderByColumn('random()');
+        }
+         else if ($sortTracks == 'rating') {
+            $qry->addDescendingOrderByColumn('rating');
         } else {
             Logging::warning("Unimplemented sortTracks type in ".__FILE__);
         }
@@ -1618,6 +1633,13 @@ SQL;
         $repeatTracks = 0;
         if (isset($storedCrit['repeat_tracks'])) {
             $repeatTracks = $storedCrit['repeat_tracks']['value'];
+        }
+
+        $notPlayed = 0;
+        if (isset($storedCrit["notplayed_tracks"])) {
+            if ($storedCrit["notplayed_tracks"]["value"]) {
+                $qry->add("lptime", null, Criteria::ISNULL);
+            }
         }
         
         try {

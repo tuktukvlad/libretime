@@ -172,7 +172,8 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
             $this->sortOptions = array(
                 "random"   => _("Randomly"),
                 "newest" => _("Newest"),
-                "oldest"   => _("Oldest")
+                "oldest"   => _("Oldest"),
+                "rating"   => "По рейтингу"
             );
         }
         return $this->sortOptions;
@@ -447,6 +448,17 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
                 $repeatTracks->setChecked($storedCrit["repeat_tracks"]["value"] == 1?true:false);
         }
         $this->addElement($repeatTracks);
+
+
+        $notPlayed = new Zend_Form_Element_Checkbox('sp_notplayed_tracks');
+        $notPlayed->setDecorators(array('viewHelper'))
+                     ->setLabel("Не проигранные треки:");
+        if (isset($storedCrit["notplayed_tracks"])) {
+                $notPlayed->setChecked($storedCrit["notplayed_tracks"]["value"] == 1?true:false);
+        }
+        $this->addElement($notPlayed);
+
+
 
         $sort = new Zend_Form_Element_Select('sp_sort_options');
         $sort->setAttrib('class', 'sp_input_select')
