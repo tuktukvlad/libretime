@@ -1118,6 +1118,8 @@ class Application_Service_HistoryService
 			array("name"=> MDATA_KEY_DURATION, "label"=> _("Length"), "type"=> TEMPLATE_STRING),
 			array("name"=> MDATA_KEY_GENRE, "label"=> _("Genre"), "type"=> TEMPLATE_STRING),
 			array("name"=> MDATA_KEY_MOOD, "label"=> _("Mood"), "type"=> TEMPLATE_STRING),
+			array("name"=> "id", "label"=> "ID", "type"=> TEMPLATE_INT),
+			array("name"=> MDATA_KEY_RATING, "label"=> _("Rating"), "type"=> TEMPLATE_FLOAT),
 			array("name"=> MDATA_KEY_LABEL, "label"=> _("Label"), "type"=> TEMPLATE_STRING),
 			array("name"=> MDATA_KEY_COMPOSER, "label"=> _("Composer"), "type"=> TEMPLATE_STRING),
 			array("name"=> MDATA_KEY_ISRC, "label"=> _("ISRC"), "type"=> TEMPLATE_STRING),
@@ -1152,6 +1154,7 @@ class Application_Service_HistoryService
 
 		$fields[] = array("name" => "starts", "label"=> _("Start Time"),"type" => TEMPLATE_DATETIME, "isFileMd" => false);
 		$fields[] = array("name" => "ends", "label"=> _("End Time"), "type" => TEMPLATE_DATETIME, "isFileMd" => false);
+		$fields[] = array("name" => "id", "label"=> "ID", "type" => TEMPLATE_INT, "isFileMd" => true); //these fields can be populated from an associated file.
 		$fields[] = array("name" => MDATA_KEY_TITLE, "label"=> _("Title"), "type" => TEMPLATE_STRING, "isFileMd" => true); //these fields can be populated from an associated file.
 		$fields[] = array("name" => MDATA_KEY_CREATOR, "label"=> _("Creator"), "type" => TEMPLATE_STRING, "isFileMd" => true);
 
