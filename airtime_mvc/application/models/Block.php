@@ -1288,6 +1288,14 @@ SQL;
             ->setDbBlockId($this->id)
             ->save();
 
+        // insert notscheduled_tracks
+        $qry = new CcBlockcriteria();
+        $qry->setDbCriteria("notscheduled_tracks")
+            ->setDbModifier("N/A")
+            ->setDbValue($p_criteriaData['etc']['sp_notscheduled_tracks'])
+            ->setDbBlockId($this->id)
+            ->save();
+
         // insert overflow track option
         $qry = new CcBlockcriteria();
         $qry->setDbCriteria("overflow_tracks")
@@ -1510,6 +1518,8 @@ SQL;
                 $storedCrit["repeat_tracks"] = array("value"=>$value);
             } else if($criteria == "notplayed_tracks") {
                 $storedCrit["notplayed_tracks"] = array("value"=>$value);
+            } else if($criteria == "notscheduled_tracks") {
+                $storedCrit["notscheduled_tracks"] = array("value"=>$value);
             } else if($criteria == "overflow_tracks") {
                 $storedCrit["overflow_tracks"] = array("value"=>$value);
             } else if($criteria == "sort") {
@@ -1813,6 +1823,7 @@ SQL;
         
         $repeatTracks = 0;
         $notPlayed = 0;
+        $notScheduled = 0;
         $overflowTracks = 0;
 
         if (isset($storedCrit['repeat_tracks'])) {
@@ -1823,6 +1834,12 @@ SQL;
         if (isset($storedCrit["notplayed_tracks"])) {
             if ($storedCrit["notplayed_tracks"]["value"]) {
                 $qry->add("lptime", null, Criteria::ISNULL);
+            }
+        }
+
+        if (isset($storedCrit["notscheduled_tracks"])) {
+            if ($storedCrit["notscheduled_tracks"]["value"]) {
+                $qry->add("is_scheduled", "false", Criteria::EQUAL);
             }
         }
 
