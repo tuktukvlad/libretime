@@ -1280,6 +1280,14 @@ SQL;
         ->setDbBlockId($this->id)
         ->save();
 
+        // insert notplayed_tracks
+        $qry = new CcBlockcriteria();
+        $qry->setDbCriteria("notplayed_tracks")
+            ->setDbModifier("N/A")
+            ->setDbValue($p_criteriaData['etc']['sp_notplayed_tracks'])
+            ->setDbBlockId($this->id)
+            ->save();
+
         // insert overflow track option
         $qry = new CcBlockcriteria();
         $qry->setDbCriteria("overflow_tracks")
@@ -1287,7 +1295,6 @@ SQL;
             ->setDbValue($p_criteriaData['etc']['sp_overflow_tracks'])
             ->setDbBlockId($this->id)
             ->save();
-
     }
 
     /**
@@ -1501,6 +1508,8 @@ SQL;
                     "display_modifier"=>_($modifier));
             } else if($criteria == "repeat_tracks") {
                 $storedCrit["repeat_tracks"] = array("value"=>$value);
+            } else if($criteria == "notplayed_tracks") {
+                $storedCrit["notplayed_tracks"] = array("value"=>$value);
             } else if($criteria == "overflow_tracks") {
                 $storedCrit["overflow_tracks"] = array("value"=>$value);
             } else if($criteria == "sort") {
@@ -1771,6 +1780,9 @@ SQL;
         }
         else if ($sortTracks == 'random') {
             $qry->addAscendingOrderByColumn('random()');
+        }
+         else if ($sortTracks == 'rating') {
+            $qry->addDescendingOrderByColumn('rating');
         } else {
             Logging::warning("Unimplemented sortTracks type in ".__FILE__);
         }
@@ -1800,10 +1812,18 @@ SQL;
         }
         
         $repeatTracks = 0;
+        $notPlayed = 0;
         $overflowTracks = 0;
 
         if (isset($storedCrit['repeat_tracks'])) {
             $repeatTracks = $storedCrit['repeat_tracks']['value'];
+        }
+
+
+        if (isset($storedCrit["notplayed_tracks"])) {
+            if ($storedCrit["notplayed_tracks"]["value"]) {
+                $qry->add("lptime", null, Criteria::ISNULL);
+            }
         }
 
         if (isset($storedCrit['overflow_tracks'])) {

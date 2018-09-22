@@ -174,6 +174,7 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
                 "random"   => _("Randomly"),
                 "newest" => _("Newest"),
                 "oldest"   => _("Oldest"),
+                "rating"   => ("Most better rating"),
                 "mostrecentplay" => ("Most recently played"),
                 "leastrecentplay" => ("Least recently played")
             );
@@ -454,6 +455,14 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
                 $repeatTracks->setChecked($storedCrit["repeat_tracks"]["value"] == 1?true:false);
         }
         $this->addElement($repeatTracks);
+
+        $notPlayed = new Zend_Form_Element_Checkbox('sp_notplayed_tracks');
+        $notPlayed->setDecorators(array('viewHelper'))
+            ->setLabel("Tracks was not played:");
+        if (isset($storedCrit["notplayed_tracks"])) {
+            $notPlayed->setChecked($storedCrit["notplayed_tracks"]["value"] == 1?true:false);
+        }
+        $this->addElement($notPlayed);
 
         $overflowTracks = new Zend_Form_Element_Checkbox('sp_overflow_tracks');
         $overflowTracks->setDecorators(array('viewHelper'))
