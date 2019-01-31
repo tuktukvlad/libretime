@@ -1,6 +1,104 @@
 <form class="smart-block-form" method="post" action="">
     <dl class='zend_form search-criteria'>
         <div id='sp-success' class='success' style='display:none'></div>
+        <dt>
+            <label class='sp-label'>
+                <?php echo $this->element->getElement('sp_type')->getLabel() ?>
+            </label>
+        </dt>
+        <dd id='sp_type-element'>
+            <?php $i=0;
+                  $value = $this->element->getElement('sp_type')->getValue();
+                  foreach ($this->element->getElement('sp_type')->getMultiOptions() as $radio) : ?>
+                  
+                  <label class='sp-label' for='sp_type-<?php echo $i?>'>
+                      <input type="radio" value="<?php echo $i ?>" id="sp_type-<?php echo $i ?>" name="sp_type" <?php if($i == $value){echo 'checked="checked"';}?> ><?php echo $radio ?>
+                  </label>
+            <?php $i = $i + 1; ?>
+            <?php endforeach; ?>
+            <span class='playlist_type_help_icon'></span>
+        </dd>
+
+        <dt>
+            <label class='sp_text_font'><?php echo $this->element->getElement('sp_repeat_tracks')->getLabel() ?></label>
+        </dt>
+        <dd id='sp_repeat_tracks-element'>
+            <?php echo $this->element->getElement('sp_repeat_tracks')?>
+            <?php if($this->element->getElement("sp_repeat_tracks")->hasErrors()) : ?>
+                <?php foreach($this->element->getElement("sp_repeat_tracks")->getMessages() as $error): ?>
+                    <span class='errors sp-errors'>
+                   <?php echo $error; ?>
+                </span>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <span class='repeat_tracks_help_icon'></span>
+        </dd>
+
+
+       <!-- Не проигранные -->
+        <dt>
+            <label class='sp_text_font'><?php echo $this->element->getElement('sp_notplayed_tracks')->getLabel() ?></label>
+        </dt>
+        <dd id='sp_notplayed_tracks-element'>
+            <?php echo $this->element->getElement('sp_notplayed_tracks')?>
+            <?php if($this->element->getElement("sp_notplayed_tracks")->hasErrors()) : ?>
+                <?php foreach($this->element->getElement("sp_notplayed_tracks")->getMessages() as $error): ?>
+                    <span class='errors sp-errors'>
+                   <?php echo $error; ?>
+                </span>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <span class='notplayed_tracks_help_icon'></span>
+        </dd>
+
+        <!-- Не запланированные-->
+        <dt>
+            <label class='sp_text_font'><?php echo $this->element->getElement('sp_notscheduled_tracks')->getLabel() ?></label>
+        </dt>
+        <dd id='sp_notscheduled_tracks-element'>
+            <?php echo $this->element->getElement('sp_notscheduled_tracks')?>
+            <?php if($this->element->getElement("sp_notscheduled_tracks")->hasErrors()) : ?>
+                <?php foreach($this->element->getElement("sp_notscheduled_tracks")->getMessages() as $error): ?>
+                    <span class='errors sp-errors'>
+                   <?php echo $error; ?>
+                </span>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <span class='notscheduled_tracks_help_icon'></span>
+        </dd>
+
+
+
+
+        <dt>
+            <label class='sp_text_font'><?php echo $this->element->getElement('sp_sort_options')->getLabel();?></label>
+        </dt>
+        <dd id='sp_sort-element'>
+            <?php echo $this->element->getElement('sp_sort_options') ?>
+            <?php if($this->element->getElement("sp_sort_options")->hasErrors()) : ?>
+                <?php foreach($this->element->getElement("sp_sort_options")->getMessages() as $error): ?>
+                    <span class='errors sp-errors'>
+                   <?php echo $error; ?>
+                </span>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </dd>
+
+        <dt>
+            <label class='sp_text_font'><?php echo $this->element->getElement('sp_limit_value')->getLabel() ?></label>
+        </dt>
+        <dd id='sp_limit-element'>
+            <?php echo $this->element->getElement('sp_limit_value')?>
+            <?php echo $this->element->getElement('sp_limit_options') ?>
+            <?php if($this->element->getElement("sp_limit_value")->hasErrors()) : ?>
+                <?php foreach($this->element->getElement("sp_limit_value")->getMessages() as $error): ?>
+                    <span class='errors sp-errors'>
+                   <?php echo $error; ?>
+                </span>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </dd>
+
         <dt><label><?php echo(_("Search Criteria:"));?></label></dt>
         <dd id='sp_criteria-element' class='criteria-element'>
         <?php for ($i = 0; $i < $this->criteriasLength; $i++) {

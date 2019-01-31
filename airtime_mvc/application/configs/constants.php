@@ -3,18 +3,18 @@
 define('PRODUCT_NAME'       , 'LibreTime');
 define('PRODUCT_SITE_URL'   , 'http://libretime.org');
 
-define('SAAS_PRODUCT_BRANDING_NAME', 'LibreTime');
+define('SAAS_PRODUCT_BRANDING_NAME', 'Minsk House');
 define('SAAS_LOGIN_REFERRER', 'http://libretime.org');
 
 define('COMPANY_NAME'       , 'LibreTime Community');
 define('COMPANY_SUFFIX'     , '');
 define('COMPANY_SITE'       , 'libretime.org');
 define('COMPANY_SITE_URL'   , 'http://libretime.org');
-define('SUPPORT_ADDRESS'    , 'https://discourse.libretime.org/');
+define('SUPPORT_ADDRESS'    , 'https://github.com/LibreTime/libretime/issues');
 
-define("AIRTIMEPRO_API_URL", "https://account.example.com:5001/api/");
+define("AIRTIMEPRO_API_URL", "https://account.sourcefabric.com:5001/api/");
 
-define('HELP_URL'                   , 'https://discourse.libretime.org/');
+define('HELP_URL'                   , 'http://help.sourcefabric.org/');
 define('FAQ_URL'                    , 'http://libretime.org/faq/');
 define('WHOS_USING_URL'             , 'https://github.com/orgs/LibreTime/people');
 define('TERMS_AND_CONDITIONS_URL'   , 'https://github.com/LibreTime/libretime/blob/master/README.md');
@@ -78,6 +78,7 @@ define('MDATA_KEY_TRACKNUMBER' , 'track_number');
 define('MDATA_KEY_CONDUCTOR'   , 'conductor');
 define('MDATA_KEY_LANGUAGE'    , 'language');
 define('MDATA_KEY_REPLAYGAIN'  , 'replay_gain');
+define('MDATA_KEY_RATING'  , 'rating');
 define('MDATA_KEY_OWNER_ID'    , 'owner_id');
 define('MDATA_KEY_CUE_IN'      , 'cuein');
 define('MDATA_KEY_CUE_OUT'     , 'cueout');

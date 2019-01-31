@@ -18,6 +18,7 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
         "album_title"  => "s",
         "bit_rate"     => "n",
         "bpm"          => "n",
+        "rating"       => "n",
         "composer"     => "s",
         "conductor"    => "s",
         "copyright"    => "s",
@@ -53,6 +54,7 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
                 "album_title"  => _("Album"),
                 "bit_rate"     => _("Bit Rate (Kbps)"),
                 "bpm"          => _("BPM"),
+                "rating"       => _("Rating"),
                 "composer"     => _("Composer"),
                 "conductor"    => _("Conductor"),
                 "copyright"    => _("Copyright"),
@@ -171,7 +173,8 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
             $this->sortOptions = array(
                 "random"   => _("Randomly"),
                 "newest" => _("Newest"),
-                "oldest"   => _("Oldest")
+                "oldest"   => _("Oldest"),
+                "rating"   => "По рейтингу"
             );
         }
         return $this->sortOptions;
@@ -456,6 +459,25 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
         }
         $this->addElement($overflowTracks);
 
+
+        $notPlayed = new Zend_Form_Element_Checkbox('sp_notplayed_tracks');
+        $notPlayed->setDecorators(array('viewHelper'))
+                     ->setLabel("Не проигранные треки:");
+        if (isset($storedCrit["notplayed_tracks"])) {
+                $notPlayed->setChecked($storedCrit["notplayed_tracks"]["value"] == 1?true:false);
+        }
+        $this->addElement($notPlayed);
+
+        $notScheduled = new Zend_Form_Element_Checkbox('sp_notscheduled_tracks');
+        $notScheduled->setDecorators(array('viewHelper'))
+                     ->setLabel("Не запланированные треки:");
+        if (isset($storedCrit["notscheduled_tracks"])) {
+                $notScheduled->setChecked($storedCrit["notscheduled_tracks"]["value"] == 1?true:false);
+        }
+        $this->addElement($notScheduled);
+
+
+
         $sort = new Zend_Form_Element_Select('sp_sort_options');
         $sort->setAttrib('class', 'sp_input_select')
               ->setDecorators(array('viewHelper'))
@@ -693,6 +715,7 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
             "artist_name" => "DbArtistName",
             "bit_rate" => "DbBitRate",
             "bpm" => "DbBpm",
+            "rating" => "DbRating",
             "composer" => "DbComposer",
             "conductor" => "DbConductor",
             "copyright" => "DbCopyright",

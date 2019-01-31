@@ -62,6 +62,7 @@ class Application_Model_Block implements Application_Model_LibraryEditable
             "artist_name"  => "DbArtistName",
             "bit_rate"     => "DbBitRate",
             "bpm"          => "DbBpm",
+            "rating"       => "DbRating",
             "composer"     => "DbComposer",
             "conductor"    => "DbConductor",
             "copyright"    => "DbCopyright",
@@ -1280,6 +1281,23 @@ SQL;
             ->setDbBlockId($this->id)
             ->save();
 
+
+
+         // Добавляем критерию в базу - Не проигранные треки
+        $qry = new CcBlockcriteria();
+        $qry->setDbCriteria("notplayed_tracks")
+        ->setDbModifier("N/A")
+        ->setDbValue($p_criteriaData['etc']['sp_notplayed_tracks'])
+        ->setDbBlockId($this->id)
+        ->save();
+
+        // Добавляем критерию в базу - Не запланированные треки
+        $qry = new CcBlockcriteria();
+        $qry->setDbCriteria("notscheduled_tracks")
+        ->setDbModifier("N/A")
+        ->setDbValue($p_criteriaData['etc']['sp_notscheduled_tracks'])
+        ->setDbBlockId($this->id)
+        ->save();
     }
 
     /**
@@ -1428,6 +1446,7 @@ SQL;
             "album_title"  => _("Album"),
             "bit_rate"     => _("Bit Rate (Kbps)"),
             "bpm"          => _("BPM"),
+            "rating"       => _("Rating"),
             "composer"     => _("Composer"),
             "conductor"    => _("Conductor"),
             "copyright"    => _("Copyright"),
@@ -1491,6 +1510,10 @@ SQL;
                     "display_modifier"=>_($modifier));
             } else if($criteria == "repeat_tracks") {
                 $storedCrit["repeat_tracks"] = array("value"=>$value);
+            } else if($criteria == "notplayed_tracks") {
+                $storedCrit["notplayed_tracks"] = array("value"=>$value);
+            } else if($criteria == "notscheduled_tracks") {
+                $storedCrit["notscheduled_tracks"] = array("value"=>$value);
             } else if($criteria == "overflow_tracks") {
                 $storedCrit["overflow_tracks"] = array("value"=>$value);
             } else if($criteria == "sort") {
@@ -1638,6 +1661,9 @@ SQL;
         }
         else if ($sortTracks == 'random') {
             $qry->addAscendingOrderByColumn('random()');
+        }
+         else if ($sortTracks == 'rating') {
+            $qry->addDescendingOrderByColumn('rating');
         } else {
             Logging::warning("Unimplemented sortTracks type in ".__FILE__);
         }
@@ -1674,6 +1700,21 @@ SQL;
         if (isset($storedCrit['repeat_tracks'])) {
             $repeatTracks = $storedCrit['repeat_tracks']['value'];
         }
+
+        $notPlayed = 0;
+        if (isset($storedCrit["notplayed_tracks"])) {
+            if ($storedCrit["notplayed_tracks"]["value"]) {
+                $qry->add("lptime", null, Criteria::ISNULL);
+            }
+        }
+
+        $notScheduled = 0;
+        if (isset($storedCrit["notscheduled_tracks"])) {
+            if ($storedCrit["notscheduled_tracks"]["value"]) {
+                $qry->add("is_scheduled", "false", Criteria::EQUAL);
+            }
+        }
+        
 
         if (isset($storedCrit['overflow_tracks'])) {
             $overflowTracks = $storedCrit['overflow_tracks']['value'];
