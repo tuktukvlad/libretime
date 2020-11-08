@@ -233,12 +233,12 @@ SQL;
         foreach ($rows as &$row) {
 
             $clipSec = Application_Common_DateHelper::playlistTimeToSeconds($row['length']);
-            
+
             $row['trackSec'] = $clipSec;
-            
+
             $row['cueInSec'] = Application_Common_DateHelper::playlistTimeToSeconds($row['cuein']);
             $row['cueOutSec'] = Application_Common_DateHelper::playlistTimeToSeconds($row['cueout']);
-            
+
             $trackoffset = $row['trackoffset'];
             $offset += $clipSec;
             $offset -= $trackoffset;
@@ -255,7 +255,7 @@ SQL;
             $fades = $this->getFadeInfo($row['position']);
             $row['fadein'] = $fades[0];
             $row['fadeout'] = $fades[1];
-            
+
             // format the cues in format 00:00:00(.0)
             // we need to add the '.0' for cues and not fades
             // because propel takes care of this for us
@@ -489,7 +489,7 @@ SQL;
                 Logging::info("Adding to block");
                 Logging::info("at position {$pos}");
             }
-            
+
             foreach ($p_items as $ac) {
                 //Logging::info("Adding audio file {$ac[0]}");
                 try {
@@ -678,7 +678,7 @@ SQL;
 
         return array($fadeIn, $fadeOut);
     }
-    
+
     /*
      * create a crossfade from item in cc_playlist_contents with $id1 to item $id2.
     *
@@ -689,11 +689,11 @@ SQL;
     public function createCrossfade($id1, $fadeOut, $id2, $fadeIn, $offset)
     {
     	$this->con->beginTransaction();
-    	
+
     	if (!isset($offset)) {
     		$offset = Application_Model_Preference::GetDefaultCrossfadeDuration();
     	}
-    	 
+
     	try {
     		if (isset($id1)) {
     			$this->changeFadeInfo($id1, null, $fadeOut);
@@ -701,9 +701,9 @@ SQL;
     		if (isset($id2)) {
     			$this->changeFadeInfo($id2, $fadeIn, null, $offset);
     		}
-    
+
     		$this->con->commit();
-    
+
     	} catch (Exception $e) {
     		$this->con->rollback();
     		throw $e;
@@ -747,20 +747,20 @@ SQL;
                     ':fade_in' => $fadeIn,
                     ':clip_length' => $clipLength
                 );
-                
+
                 $result = Application_Common_Database::prepareAndExecute($sql, $params, 'column');
                 if ($result) {
                     //"Fade In can't be larger than overall playlength.";
                     $fadeIn = $clipLength;
                 }
                 $row->setDbFadein($fadeIn);
-                
+
                 if (!is_null($offset)) {
                 	$row->setDbTrackOffset($offset);
                 	Logging::info("Setting offset {$offset} on item {$id}");
                 	$row->save($this->con);
                 }
-                
+
             }
             if (!is_null($fadeOut)) {
 
@@ -769,7 +769,7 @@ SQL;
                     ':fade_out' => $fadeOut,
                     ':clip_length' => $clipLength
                 );
-                
+
                 $result = Application_Common_Database::prepareAndExecute($sql, $params, 'column');
                 if ($result) {
                     //"Fade Out can't be larger than overall playlength.";
@@ -910,7 +910,7 @@ SQL;
 
                 $row->setDbCuein($cueIn);
                 $row->setDBCliplength($cliplength);
-                
+
             } elseif (!is_null($cueOut)) {
 
                 if ($cueOut === "") {
@@ -1017,8 +1017,8 @@ SQL;
     public static function getBlockCount()
     {
          $sql = 'SELECT count(*) as cnt FROM cc_playlist';
-         
-         $res = Application_Common_Database::prepareAndExecute($sql, array(), 
+
+         $res = Application_Common_Database::prepareAndExecute($sql, array(),
          		Application_Common_Database::COLUMN);
 
          return $res;
@@ -1065,7 +1065,7 @@ SQL;
             CcBlockQuery::create()->findPKs($p_ids)->delete();
             $updateIsPlaylistFlag = true;
         }
-        
+
         if ($updateIsPlaylistFlag) {
             // update is_playlist flag in cc_files
             Application_Model_StoredFile::setIsPlaylist(
@@ -1164,7 +1164,7 @@ SQL;
         $blockType = $data['etc']['sp_type'] == 0 ? 'dynamic':'static';
         $this->saveType($blockType);
         $this->storeCriteriaIntoDb($data);
-        
+
         // if the block is dynamic, put null to the length
         // as it cannot be calculated
         if ($blockType == 'dynamic') {
@@ -1203,14 +1203,13 @@ SQL;
                 // that might contradict itself we group them based upon their original position on the form
                 $criteriaGroup = $i;
                 foreach ($p_criteriaData['criteria'][$critKeys[$i]] as $d) {
-                    Logging::info($d);
                 	$field = $d['sp_criteria_field'];
                 	$value = $d['sp_criteria_value'];
                 	$modifier = $d['sp_criteria_modifier'];
                     if (isset($d['sp_criteria_extra'])) { $extra = $d['sp_criteria_extra']; }
                     if (isset($d['sp_criteria_datetime_select'])) { $datetimeunit = $d['sp_criteria_datetime_select']; }
                     if (isset($d['sp_criteria_extra_datetime_select'])) {$extradatetimeunit = $d['sp_criteria_extra_datetime_select'];}
-                		 	
+
                 	if ($field == 'utime' || $field == 'mtime' || $field == 'lptime') {
                 	    // if the date isn't relative we  want to convert the value to a specific UTC date
                 	    if (!(in_array($modifier,array('before','after','between')))) {
@@ -1222,7 +1221,7 @@ SQL;
 
                         }
                 	}
-                	
+
                     $qry = new CcBlockcriteria();
                     $qry->setDbCriteria($field)
                     ->setDbModifier($d['sp_criteria_modifier'])
@@ -1230,7 +1229,7 @@ SQL;
                     ->setDbBlockId($this->id);
 
                     if (isset($d['sp_criteria_extra'])) {
-                    	
+
                     	if ($field == 'utime' || $field == 'mtime' || $field == 'lptime') {
                             // if the date isn't relative we  want to convert the value to a specific UTC date
                             if (!(in_array($modifier,array('before','after','between')))) {
@@ -1241,7 +1240,7 @@ SQL;
                             }
 
                     	}
-                    	
+
                         $qry->setDbExtra($extra);
                     }
                     // save the criteria group so separation via new modifiers AND can be preserved vs. lumping
@@ -1271,8 +1270,8 @@ SQL;
         ->setDbValue($p_criteriaData['etc']['sp_limit_value'])
         ->setDbBlockId($this->id)
         ->save();
-       
- 
+
+
         // insert repeat track option
         $qry = new CcBlockcriteria();
         $qry->setDbCriteria("repeat_tracks")
@@ -1281,6 +1280,22 @@ SQL;
         ->setDbBlockId($this->id)
         ->save();
 
+        // insert notplayed_tracks
+        $qry = new CcBlockcriteria();
+        $qry->setDbCriteria("notplayed_tracks")
+            ->setDbModifier("N/A")
+            ->setDbValue($p_criteriaData['etc']['sp_notplayed_tracks'])
+            ->setDbBlockId($this->id)
+            ->save();
+
+        // insert notscheduled_tracks
+        $qry = new CcBlockcriteria();
+        $qry->setDbCriteria("notscheduled_tracks")
+            ->setDbModifier("N/A")
+            ->setDbValue($p_criteriaData['etc']['sp_notscheduled_tracks'])
+            ->setDbBlockId($this->id)
+            ->save();
+
         // insert overflow track option
         $qry = new CcBlockcriteria();
         $qry->setDbCriteria("overflow_tracks")
@@ -1288,24 +1303,6 @@ SQL;
             ->setDbValue($p_criteriaData['etc']['sp_overflow_tracks'])
             ->setDbBlockId($this->id)
             ->save();
-
-
-
-         // Добавляем критерию в базу - Не проигранные треки
-        $qry = new CcBlockcriteria();
-        $qry->setDbCriteria("notplayed_tracks")
-        ->setDbModifier("N/A")
-        ->setDbValue($p_criteriaData['etc']['sp_notplayed_tracks'])
-        ->setDbBlockId($this->id)
-        ->save();
-
-        // Добавляем критерию в базу - Не запланированные треки
-        $qry = new CcBlockcriteria();
-        $qry->setDbCriteria("notscheduled_tracks")
-        ->setDbModifier("N/A")
-        ->setDbValue($p_criteriaData['etc']['sp_notscheduled_tracks'])
-        ->setDbBlockId($this->id)
-        ->save();
     }
 
     /**
@@ -1366,11 +1363,11 @@ SQL;
         // this moves the pointer to the first element in the collection
         $files->getFirst();
         $iterator = $files->getIterator();
-        
+
         $isBlockFull = false;
-        
+
         while ($iterator->valid()) {
-        	
+
             $id = $iterator->current()->getDbId();
             $fileLength = $iterator->current()->getCueLength();
             $length = Application_Common_DateHelper::calculateLengthInSeconds($fileLength);
@@ -1403,15 +1400,15 @@ SQL;
 
             $iterator->next();
         }
-        
+
         $sizeOfInsert = count($insertList);
-        
+
         // if block is not full and repeat_track is check, fill up more
         // additionally still don't overflow the limit
         while (!$isBlockFull && $repeat == 1 && $sizeOfInsert > 0) {
         	Logging::debug("adding repeated tracks.");
         	Logging::debug("total time = " . $totalTime);
-        	
+
             $randomEleKey = array_rand(array_slice($insertList, 0, $sizeOfInsert));
             // this will also allow the overflow of tracks so that time limited smart blocks will schedule until they
             // are longer than the time limit rather than never scheduling past the time limit
@@ -1431,7 +1428,7 @@ SQL;
                     $totalItems++;
                 }
             }
-            
+
             if ((!is_null($limit['items']) && $limit['items'] == count($insertList)) || $totalItems > 500 || $totalTime > $limit['time']) {
                 break;
             }
@@ -1558,6 +1555,7 @@ SQL;
             "album_title"  => _("Album"),
             "bit_rate"     => _("Bit Rate (Kbps)"),
             "bpm"          => _("BPM"),
+            "rating"        => _("Rating"),
             "composer"     => _("Composer"),
             "conductor"    => _("Conductor"),
             "copyright"    => _("Copyright"),
@@ -1609,7 +1607,6 @@ SQL;
         $storedCrit = array();
 
         foreach ($out as $crit) {
-            Logging::info($crit);
             $criteria = $crit->getDbCriteria();
             $modifier = $crit->getDbModifier();
             $value = $crit->getDbValue();
@@ -1621,6 +1618,10 @@ SQL;
                     "value"=>$value,
                     "modifier"=>$modifier,
                     "display_modifier"=>_($modifier));
+            } else if($criteria == "notplayed_tracks") {
+                $storedCrit["notplayed_tracks"] = array("value"=>$value);
+            } else if($criteria == "notscheduled_tracks") {
+                $storedCrit["notscheduled_tracks"] = array("value"=>$value);
             } else if($criteria == "repeat_tracks") {
                 $storedCrit["repeat_tracks"] = array("value"=>$value);
             } else if($criteria == "overflow_tracks") {
@@ -1637,15 +1638,13 @@ SQL;
                     "display_modifier"=>$modifierOptions[$modifier]);
             }
         }
-
-        Logging::info($storedCrit);
         return $storedCrit;
 
     }
 
 
     // this function return list of propel object
-    public function getListofFilesMeetCriteria($show = null)
+    public function getListofFilesMeetCriteria($showLimit = null)
     {
         $storedCrit = $this->getCriteria();
 
@@ -1753,14 +1752,9 @@ SQL;
                         if ($spCriteria == "owner_id") {
                             $spCriteria = "subj.login";
                         }
-                        Logging::info($i);
-                        Logging::info($group);
-                        Logging::info($prevgroup);
                         if ($i > 0 && $prevgroup == $group) {
-                            Logging::info('adding or');
                             $qry->addOr($spCriteria, $spCriteriaValue, $spCriteriaModifier);
                         } else {
-                            Logging::info('adding and');
                             $qry->addAnd($spCriteria, $spCriteriaValue, $spCriteriaModifier);
                         }
                         // only add this NOT LIKE null if you aren't also matching on another criteria
@@ -1781,6 +1775,7 @@ SQL;
         // check if file exists
         $qry->add("file_exists", "true", Criteria::EQUAL);
         $qry->add("hidden", "false", Criteria::EQUAL);
+
         $sortTracks = 'random';
         if (isset($storedCrit['sort'])) {
             $sortTracks = $storedCrit['sort']['value'];
@@ -1791,10 +1786,17 @@ SQL;
         else if ($sortTracks == 'oldest') {
             $qry->addAscendingOrderByColumn('utime');
         }
+        // these sort additions are needed to override the default postgres NULL sort behavior
+        else if ($sortTracks == 'mostrecentplay') {
+            $qry->addDescendingOrderByColumn('(lptime IS NULL), lptime');
+        }
+        else if ($sortTracks == 'leastrecentplay') {
+            $qry->addAscendingOrderByColumn('(lptime IS NOT NULL), lptime');
+        }
         else if ($sortTracks == 'random') {
             $qry->addAscendingOrderByColumn('random()');
         }
-         else if ($sortTracks == 'rating') {
+        else if ($sortTracks == 'rating') {
             $qry->addDescendingOrderByColumn('rating');
         } else {
             Logging::warning("Unimplemented sortTracks type in ".__FILE__);
@@ -1808,9 +1810,8 @@ SQL;
                 $limits['items'] = $storedCrit['limit']['value'];
             } elseif (($storedCrit['limit']['modifier'] == "remaining") ){
                 // show will be null unless being called inside a show instance
-                if (!(is_null($show))) {
-                    $showInstance = new Application_Model_ShowInstance($show);
-                    $limits['time'] = $showInstance->getSecondsRemaining();
+                if (!(is_null($showLimit))) {
+                    $limits['time'] = $showLimit;
                     $limits['items'] = null;
                 }
                 else {
@@ -1824,7 +1825,7 @@ SQL;
                 $limits['items'] = null;
             }
         }
-        
+
         $repeatTracks = 0;
         $overflowTracks = 0;
 
@@ -1845,18 +1846,33 @@ SQL;
                 $qry->add("is_scheduled", "false", Criteria::EQUAL);
             }
         }
-        
+
 
         if (isset($storedCrit['overflow_tracks'])) {
             $overflowTracks = $storedCrit['overflow_tracks']['value'];
         }
 
+        if (isset($storedCrit["notplayed_tracks"])) {
+            if ($storedCrit["notplayed_tracks"]["value"]) {
+                $qry->add("lptime", null, Criteria::ISNULL);
+            }
+        }
+
+        if (isset($storedCrit["notscheduled_tracks"])) {
+            if ($storedCrit["notscheduled_tracks"]["value"]) {
+                $qry->add("is_scheduled", "false", Criteria::EQUAL);
+            }
+        }
+
 
         try {
             $out = $qry->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)->find();
-            Logging::info($qry->toString());
-
-            return array("files"=>$out, "limit"=>$limits, "repeat_tracks"=> $repeatTracks, "overflow_tracks"=> $overflowTracks, "count"=>$out->count());
+            return array(
+                "files"=>$out,
+                "limit"=>$limits,
+                "repeat_tracks"=> $repeatTracks,
+                "overflow_tracks"=> $overflowTracks,
+                "count"=>$out->count());
         } catch (Exception $e) {
             Logging::info($e);
         }
@@ -1864,7 +1880,6 @@ SQL;
     }
     public static function organizeSmartPlaylistCriteria($p_criteria)
     {
-        Logging::info($p_criteria);
         $fieldNames = array('sp_criteria_field', 'sp_criteria_modifier', 'sp_criteria_value', 'sp_criteria_extra', 'sp_criteria_datetime_select', 'sp_criteria_extra_datetime_select');
         $output = array();
         foreach ($p_criteria as $ele) {
@@ -1903,7 +1918,6 @@ SQL;
                 $output['etc'][$ele['name']] = $ele['value'];
             }
         }
-        Logging::info($output);
         return $output;
     }
     public static function getAllBlockFiles()
@@ -1912,9 +1926,9 @@ SQL;
 SELECT distinct(file_id)
 FROM cc_blockcontents
 SQL;
-       
+
         $files = Application_Common_Database::prepareAndExecute($sql, array());
-        
+
         $real_files = array();
         foreach ($files as $f) {
             $real_files[] = $f['file_id'];

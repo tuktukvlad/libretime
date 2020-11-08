@@ -3,7 +3,7 @@
 define('PRODUCT_NAME'       , 'LibreTime');
 define('PRODUCT_SITE_URL'   , 'http://libretime.org');
 
-define('SAAS_PRODUCT_BRANDING_NAME', 'Minsk House');
+define('SAAS_PRODUCT_BRANDING_NAME', 'MH•Radio');
 define('SAAS_LOGIN_REFERRER', 'http://libretime.org');
 
 define('COMPANY_NAME'       , 'LibreTime Community');
@@ -78,7 +78,8 @@ define('MDATA_KEY_TRACKNUMBER' , 'track_number');
 define('MDATA_KEY_CONDUCTOR'   , 'conductor');
 define('MDATA_KEY_LANGUAGE'    , 'language');
 define('MDATA_KEY_REPLAYGAIN'  , 'replay_gain');
-define('MDATA_KEY_RATING'  , 'rating');
+define('MDATA_KEY_ID'          , 'id');
+define('MDATA_KEY_RATING'      , 'rating');
 define('MDATA_KEY_OWNER_ID'    , 'owner_id');
 define('MDATA_KEY_CUE_IN'      , 'cuein');
 define('MDATA_KEY_CUE_OUT'     , 'cueout');

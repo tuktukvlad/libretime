@@ -1519,21 +1519,24 @@ abstract class BaseCcFilesQuery extends ModelCriteria
      */
     public function filterByDbRating($dbRating = null, $comparison = null)
     {
-        if (is_array($dbRating)) {
-            $useMinMax = false;
-            if (isset($dbRating['min'])) {
-                $this->addUsingAlias(CcFilesPeer::RATING, $dbRating['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($dbRating['max'])) {
-                $this->addUsingAlias(CcFilesPeer::RATING, $dbRating['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
+        if (null === $comparison) {
+            if (is_array($dbRating)) {
+                $useMinMax = false;
+                if (isset($dbRating['min'])) {
+                    $this->addUsingAlias(CcFilesPeer::RATING, $dbRating['min'], Criteria::GREATER_EQUAL);
+                    $useMinMax = true;
+                }
+                if (isset($dbRating['max'])) {
+                    $this->addUsingAlias(CcFilesPeer::RATING, $dbRating['max'], Criteria::LESS_EQUAL);
+                    $useMinMax = true;
+                }
+                if ($useMinMax) {
+                    return $this;
+                }
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $dbRating)) {
+                $dbRating = str_replace('*', '%', $dbRating);
+                $comparison = Criteria::LIKE;
             }
         }
 

@@ -174,7 +174,9 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
                 "random"   => _("Randomly"),
                 "newest" => _("Newest"),
                 "oldest"   => _("Oldest"),
-                "rating"   => "По рейтингу"
+                "mostrecentplay" => _("Most recently played"),
+                "leastrecentplay" => _("Least recently played"),
+                "rating"   => _("Most better rating")
             );
         }
         return $this->sortOptions;
@@ -184,18 +186,18 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
     public function init()
     {
     }
-    
+
     /*
      * converts UTC timestamp citeria into user timezone strings.
      */
     private function convertTimestamps(&$criteria)
     {
     	$columns = array("utime", "mtime", "lptime");
-    	
+
     	foreach ($columns as $column) {
-    		
+
     		if (isset($criteria[$column])) {
-    			
+
     			foreach ($criteria[$column] as &$constraint) {
     			    // convert to appropriate timezone timestamps only if the modifier is not a relative time
                     if (!in_array($constraint['modifier'], array('before','after','between'))) {
@@ -247,7 +249,7 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
         $bl = new Application_Model_Block($p_blockId);
         $storedCrit = $bl->getCriteriaGrouped();
         Logging::info($storedCrit);
-        
+
         //need to convert criteria to be displayed in the user's timezone if there's some timestamp type.
         self::convertTimestamps($storedCrit["crit"]);
 
@@ -465,7 +467,7 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
 
         $notPlayed = new Zend_Form_Element_Checkbox('sp_notplayed_tracks');
         $notPlayed->setDecorators(array('viewHelper'))
-                     ->setLabel("Не проигранные треки:");
+                     ->setLabel("Tracks was not played:");
         if (isset($storedCrit["notplayed_tracks"])) {
                 $notPlayed->setChecked($storedCrit["notplayed_tracks"]["value"] == 1?true:false);
         }
@@ -473,7 +475,7 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
 
         $notScheduled = new Zend_Form_Element_Checkbox('sp_notscheduled_tracks');
         $notScheduled->setDecorators(array('viewHelper'))
-                     ->setLabel("Не запланированные треки:");
+                     ->setLabel("Out of schedule tracks:");
         if (isset($storedCrit["notscheduled_tracks"])) {
                 $notScheduled->setChecked($storedCrit["notscheduled_tracks"]["value"] == 1?true:false);
         }
@@ -490,7 +492,7 @@ class Application_Form_SmartBlockCriteria extends Zend_Form_SubForm
             $sort->setValue($storedCrit["sort"]["value"]);
         }
         $this->addElement($sort);
-        
+
         $limit = new Zend_Form_Element_Select('sp_limit_options');
         $limit->setAttrib('class', 'sp_input_select')
               ->setDecorators(array('viewHelper'))

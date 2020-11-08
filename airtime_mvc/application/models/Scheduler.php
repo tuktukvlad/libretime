@@ -84,7 +84,7 @@ final class Application_Model_Scheduler
     *
     * @param array $items, an array containing pks of cc_schedule items.
     */
-    private function validateRequest($items, $addRemoveAction=false)
+    private function validateRequest($items, $addRemoveAction=false, $cancelShow=false)
     {
         //$items is where tracks get inserted (they are schedule locations)
 
@@ -168,8 +168,10 @@ final class Application_Model_Scheduler
              * Does the afterItem belong to a show that is linked AND
              * currently playing?
              * If yes, throw an exception
+             * unless it is a cancel show action then we don't check because otherwise
+             * ongoing linked shows can't be cancelled
              */
-            if ($addRemoveAction) {
+            if ($addRemoveAction && !$cancelShow) {
                 $ccShow = $instance->getCcShow();
                 if ($ccShow->isLinked()) {
                     //get all the linked shows instances and check if
@@ -213,6 +215,10 @@ final class Application_Model_Scheduler
      */
     private function retrieveMediaFiles($id, $type, $show)
     {
+        // if there is a show we need to set a show limit to pass to smart blocks in case they use time remaining
+        $showInstance = new Application_Model_ShowInstance($show);
+        $showLimit = $showInstance->getSecondsRemaining();
+
         $files = array();
         if ($type === "audioclip") {
             $file = CcFilesQuery::create()->findPK($id, $this->con);
@@ -241,7 +247,8 @@ final class Application_Model_Scheduler
         } elseif ($type === "playlist") {
             $pl = new Application_Model_Playlist($id);
             $contents = $pl->getContents();
-
+            // because the time remaining is not updated until after the schedule inserts we need to track it for
+            // the entire add vs. querying on the smartblock level
             foreach ($contents as $plItem) {
                 if ($plItem['type'] == 0) {
                     $data["id"] = $plItem['item_id'];
@@ -278,7 +285,7 @@ final class Application_Model_Scheduler
                     } else {
                         $defaultFadeIn = Application_Model_Preference::GetDefaultFadeIn();
                         $defaultFadeOut = Application_Model_Preference::GetDefaultFadeOut();
-                        $dynamicFiles = $bl->getListOfFilesUnderLimit($show);
+                        $dynamicFiles = $bl->getListOfFilesUnderLimit($showLimit);
                         foreach ($dynamicFiles as $f) {
                             $fileId = $f['id'];
                             $file = CcFilesQuery::create()->findPk($fileId);
@@ -301,6 +308,9 @@ final class Application_Model_Scheduler
                         }
                     }
                 }
+                // if this is a playlist it might contain multiple time remaining smart blocks
+                // since the schedule isn't updated until after this insert we need to keep tally
+                $showLimit -= $this->timeLengthOfFiles($files);
             }
         } elseif ($type == "stream") {
             //need to return
@@ -337,7 +347,7 @@ final class Application_Model_Scheduler
             } else {
                 $defaultFadeIn = Application_Model_Preference::GetDefaultFadeIn();
                 $defaultFadeOut = Application_Model_Preference::GetDefaultFadeOut();
-                $dynamicFiles = $bl->getListOfFilesUnderLimit($show);
+                $dynamicFiles = $bl->getListOfFilesUnderLimit($showLimit);
                 foreach ($dynamicFiles as $f) {
                     $fileId = $f['id'];
                     $file = CcFilesQuery::create()->findPk($fileId);
@@ -858,8 +868,14 @@ final class Application_Model_Scheduler
 
                         // default fades are in seconds
                         // we need to convert to '00:00:00' format
-                        $file['fadein'] = Application_Common_DateHelper::secondsToPlaylistTime($file['fadein']);
-                        $file['fadeout'] = Application_Common_DateHelper::secondsToPlaylistTime($file['fadeout']);
+                        // added a check to only run the conversion if they are in seconds format 
+                        // otherwise php > 7.1 throws errors
+                        if (is_numeric($file['fadein'])) {
+                            $file['fadein'] = Application_Common_DateHelper::secondsToPlaylistTime($file['fadein']);
+                        }
+                        if (is_numeric($file['fadeout'])) {
+                            $file['fadeout'] = Application_Common_DateHelper::secondsToPlaylistTime($file['fadeout']);
+                        }
 
                         switch ($file["type"]) {
                             case 0:
@@ -987,6 +1003,7 @@ final class Application_Model_Scheduler
                         $this->calculateCrossfades($instanceId);
                     }
                 }//for each instance
+
             }//for each schedule location
 
             $endProfile = microtime(true);
@@ -1192,7 +1209,7 @@ final class Application_Model_Scheduler
 
         try {
 
-            $this->validateRequest($scheduledItems, true);
+            $this->validateRequest($scheduledItems, true, true);
 
             $scheduledIds = array();
             foreach ($scheduledItems as $item) {
@@ -1287,6 +1304,20 @@ final class Application_Model_Scheduler
             $this->con->rollback();
             throw $e;
         }
+    }
+    /*
+     * This is used to determine the duration of a files array
+     *
+     *
+     */
+    public function timeLengthOfFiles($files) {
+       $timeLength = 0;
+       foreach ($files as $file) {
+           $timeLength += Application_Common_DateHelper::playlistTimeToSeconds($file['cliplength']);
+           $timeLength += $file['fadein'];
+           $timeLength += $file['fadeout'];
+       }
+       return $timeLength;
     }
 
     /*

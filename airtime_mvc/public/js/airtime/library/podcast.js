@@ -71,7 +71,6 @@ var AIRTIME = (function (AIRTIME) {
                 function() {
                     // show success message
                     var successMsg = $('.active-tab .pc-sb-success')
-                    successMsg.text($.i18n._('Smartblock and playlist generated'));
                     successMsg.show("fast");
                     setTimeout(function(){
                         successMsg.hide("fast");
@@ -85,6 +84,7 @@ var AIRTIME = (function (AIRTIME) {
                         })
                         .success(function () {
                             AIRTIME.library.podcastDataTable.fnDraw();
+                            self.$scope.tab.setName(self.$scope.podcast.title);
                         });
 
                     // redraw list of smartblocks just in case they have it visible on the left
@@ -636,7 +636,7 @@ var AIRTIME = (function (AIRTIME) {
         podcastEpisodeButtons = AIRTIME.widgets.Table.getStandardToolbarButtons();
         $.extend(true, podcastEpisodeButtons[AIRTIME.widgets.Table.TOOLBAR_BUTTON_ROLES.NEW],
             {
-                title: "Import",
+                title: $.i18n._("Import"),
                 eventHandlers: {
                     click: function () {
                         var episodes = mod.episodeTables[podcastId].getSelectedRows();
@@ -719,6 +719,7 @@ var AIRTIME = (function (AIRTIME) {
 
         mod.episodeTables[podcastId] = AIRTIME.podcast.initPodcastEpisodeDatatable(
             domNode,
+            {},
             podcastEpisodeButtons,
             {
                 hideIngestCheckboxes: false,
@@ -758,9 +759,8 @@ var AIRTIME = (function (AIRTIME) {
      *
      * @returns {Table} the created Table object
      */
-    mod.initPodcastEpisodeDatatable = function (domNode, buttons, config) {
-
-        params = {
+    mod.initPodcastEpisodeDatatable = function (domNode, params, buttons, config) {
+        params = $.extend(true, params, {
             aoColumns   : [
                 /* GUID */              { "sTitle" : ""                            , "mDataProp" : "guid"           , "sClass" : "podcast_episodes_guid"        , "bVisible" : false },
                 /* Ingested */          { "sTitle" : $.i18n._("Imported?")         , "mDataProp" : "importIcon"     , "sClass" : "podcast_episodes_imported"    , "sWidth" : "120px" },
@@ -820,7 +820,7 @@ var AIRTIME = (function (AIRTIME) {
                 var dt = this.getDatatable();
                 !dt || dt.closest(".dataTables_wrapper").find(".dataTables_processing").css("visibility", "hidden");
             }
-        }
+        });
 
         if (typeof PodcastEpisodeTable === 'undefined') {
             _initPodcastEpisodeTable();
