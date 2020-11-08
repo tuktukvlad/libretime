@@ -154,7 +154,16 @@ class Application_Form_EditAudioMD extends Zend_Form
                         new Zend_Validate_Digits()));
         $this->addElement($bpm);
 
-        // Add copyright field
+        // Add rating field
+        $rating = new Zend_Form_Element_Text('rating');
+        $rating->class = 'input_text';
+        $rating->setLabel(_('Rating:'))
+            ->setFilters(array('StringTrim'))
+            ->setValidators(array(
+                new Zend_Validate_StringLength(array('min'=>0,'max' => 4))));
+        $this->addElement($rating);
+
+        // Add copyright fieldf
         $copyright = new Zend_Form_Element('copyright');
         $copyright->class = 'input_text';
         $copyright->setLabel(_('Copyright:'))
