@@ -25,18 +25,18 @@ class Application_Model_Email
         $mail = new PHPMailer();
 
         $mail->CharSet = 'utf-8';
-        $mail->SMTPDebug = 3;
+        $mail->SMTPDebug = 2;
         $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'mars.neolocation.net';                 // Specify main and backup SMTP servers
+        $mail->Host = 'smtp.yandex.ru';                 // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'contact@minsk-house.by';              // SMTP username
-        $mail->Password = 'TuktukVlad07091988';               // SMTP password
+        $mail->Username = 'info@mhradio.net';              // SMTP username
+        $mail->Password = 'qzrfvpaknhbrzqyw';               // SMTP password
         $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 465;                                    // TCP port to connect to
-        $mail->isHTML(true);    
+        $mail->isHTML(true);
 
-        $mail->setFrom('contact@minsk-house.by', SAAS_PRODUCT_BRANDING_NAME);
-        $mail->addReplyTo('contact@minsk-house.by', SAAS_PRODUCT_BRANDING_NAME);
+        $mail->setFrom('info@mhradio.net', SAAS_PRODUCT_BRANDING_NAME);
+        $mail->addReplyTo('contact@mhradio.net', SAAS_PRODUCT_BRANDING_NAME);
 
         $mail->addAddress($to);
         $mail->Subject = $subject;

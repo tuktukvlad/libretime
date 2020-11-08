@@ -102,23 +102,6 @@
         </dl>
         <dl>
             <dt>
-                <label class='sp_text_font'><?php echo $this->element->getElement('sp_repeat_tracks')->getLabel() ?></label>
-            </dt>
-            <dd id='sp_repeat_tracks-element'>
-                <?php echo $this->element->getElement('sp_repeat_tracks')?>
-                <?php if($this->element->getElement("sp_repeat_tracks")->hasErrors()) : ?>
-                    <?php foreach($this->element->getElement("sp_repeat_tracks")->getMessages() as $error): ?>
-                        <span class='errors sp-errors'>
-                    <?php echo $error; ?>
-                    </span>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-                <span class='repeat_tracks_help_icon'></span>
-            </dd>
-        </dl>
-
-        <dl>
-            <dt>
                 <label class='sp_text_font'><?php echo $this->element->getElement('sp_notplayed_tracks')->getLabel() ?></label>
             </dt>
             <dd id='sp_notplayed_tracks-element'>
@@ -151,6 +134,22 @@
             </dd>
         </dl>
 
+        <dl>
+            <dt>
+                <label class='sp_text_font'><?php echo $this->element->getElement('sp_repeat_tracks')->getLabel() ?></label>
+            </dt>
+            <dd id='sp_repeat_tracks-element'>
+                <?php echo $this->element->getElement('sp_repeat_tracks')?>
+                <?php if($this->element->getElement("sp_repeat_tracks")->hasErrors()) : ?>
+                    <?php foreach($this->element->getElement("sp_repeat_tracks")->getMessages() as $error): ?>
+                        <span class='errors sp-errors'>
+                    <?php echo $error; ?>
+                    </span>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <span class='repeat_tracks_help_icon'></span>
+            </dd>
+        </dl>
         <dl>
             <dt>
                 <label class='sp_text_font'><?php echo $this->element->getElement('sp_overflow_tracks')->getLabel() ?></label>

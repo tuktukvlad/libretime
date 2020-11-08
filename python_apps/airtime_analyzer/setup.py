@@ -28,7 +28,7 @@ setup(name='airtime_analyzer',
       packages=['airtime_analyzer'],
       scripts=['bin/airtime_analyzer'],
       install_requires=[
-          'mutagen>=1.41.1', # got rid of specific version requirement 
+          'mutagen~=1.43.0', # got rid of specific version requirement
           'pika',
           'daemon',
           'file-magic',
@@ -39,7 +39,7 @@ setup(name='airtime_analyzer',
           'requests>=2.7.0',
           'rgain',
           # These next 3 are required for requests to support SSL with SNI. Learned this the hard way...
-          # What sucks is that GCC is required to pip install these. 
+          # What sucks is that GCC is required to pip install these.
           #'ndg-httpsclient',
           #'pyasn1',
           #'pyopenssl'

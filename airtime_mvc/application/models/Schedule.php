@@ -85,7 +85,7 @@ SQL;
         );
         return $currentTrackMetadata;
     }
-    
+
     /**
      * Returns data related to the scheduled items.
      */
@@ -104,9 +104,11 @@ SQL;
         $utcNow = new DateTime("now", new DateTimeZone("UTC"));
 
         $shows = Application_Model_Show::getPrevCurrentNext($utcNow, $utcTimeEnd, $showsToRetrieve);
-        $currentShowID = (is_array($shows['currentShow'] && count($shows['currentShow'])>0))?$shows['currentShow']['instance_id']:null;
+
+        $currentShowID = (is_array($shows['currentShow']) && count($shows['currentShow'])>0)?$shows['currentShow']['instance_id']:null;
         $source = self::_getSource();
-        $results = Application_Model_Schedule::getPreviousCurrentNextMedia($utcNow, $currentShowID, self::_getSource());
+
+        $results = Application_Model_Schedule::getPreviousCurrentNextMedia($utcNow, $currentShowID, $source);
 
         $range = array(
             "station" => array (
@@ -138,9 +140,9 @@ SQL;
     public static function GetPlayOrderRangeOld()
     {
         // Everything in this function must be done in UTC. You will get a swift kick in the pants if you mess that up.
-    
+
         $utcNow = new DateTime("now", new DateTimeZone("UTC"));
-    
+
         $shows = Application_Model_Show::getPrevCurrentNextOld($utcNow);
         $currentShowID = count($shows['currentShow'])>0?$shows['currentShow'][0]['instance_id']:null;
         $source = self::_getSource();
@@ -158,7 +160,7 @@ SQL;
                 "nextShow"=>$shows['nextShow'],
                 "source_enabled" => $source
         );
-    
+
         return $range;
     }
 
@@ -849,17 +851,17 @@ SQL;
     }
 
     /**
-     * 
+     *
      * Appends schedule "events" to an array of schedule events that gets
      * sent to PYPO. Each schedule event contains information PYPO and
      * Liquidsoap need for playout.
-     * 
+     *
      * @param Array $data array to be filled with schedule info - $item(s)
      * @param Array $item schedule info about one track
      * @param Integer $media_id scheduled item's cc_files id
      * @param String $uri path to the scheduled item's physical location
      * @param Integer $filsize The file's file size in bytes
-     * 
+     *
      */
     private static function createFileScheduleEvent(&$data, $item, $media_id, $uri, $filesize)
     {
@@ -880,7 +882,7 @@ SQL;
         }
 
         $fileMetadata = CcFiles::sanitizeResponse(CcFilesQuery::create()->findPk($media_id));
-        
+
         $schedule_item = array(
             'id'                => $media_id,
             'type'              => 'file',
@@ -1034,10 +1036,10 @@ SQL;
                 //their filenames (eg. in the case of a bad file extension, because Liquidsoap won't play them)
                 $uri = Application_Common_HTTPHelper::getStationUrl() . "rest/media/" . $media_id;
                 //$uri = $file->getAbsoluteFilePath();
-                
+
                 $filesize = $file->getFileSize();
                 self::createFileScheduleEvent($data, $item, $media_id, $uri, $filesize);
-            } 
+            }
 
             elseif (!is_null($item['stream_id'])) {
                 //row is type "webstream"
