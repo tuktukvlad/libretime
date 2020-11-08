@@ -42,7 +42,7 @@ define('LIBRETIME_CONF_DIR', getenv('LIBRETIME_CONF_DIR') ? getenv('LIBRETIME_CO
 define('LIBRETIME_LOG_DIR', getenv('LIBRETIME_LOG_DIR') ? getenv('LIBRETIME_LOG_DIR') : '/var/log/airtime');
 
 // Defaults
-define('DEFAULT_LOGO_PLACEHOLDER', 1);
+define('DEFAULT_LOGO_PLACEHOLDER', 0);
 define('DEFAULT_LOGO_FILE', 'images/airtime_logo.png');
 define('DEFAULT_TIMESTAMP_FORMAT', 'Y-m-d H:i:s');
 define('DEFAULT_MICROTIME_FORMAT', 'Y-m-d H:i:s.u');
