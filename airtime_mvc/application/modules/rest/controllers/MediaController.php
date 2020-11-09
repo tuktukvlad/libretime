@@ -156,6 +156,11 @@ class Rest_MediaController extends Zend_Rest_Controller
                 ->setHttpResponseCode(400)
                 ->appendBody("ERROR: Disk Quota reached.");
         }
+        catch (FileExistException $e) {
+            $this->getResponse()
+                ->setHttpResponseCode(422)
+                ->appendBody($e->getMessage());
+        }
         catch (Exception $e) {
             $this->serviceUnavailableResponse();
             Logging::error($e->getMessage() . "\n" . $e->getTraceAsString());
