@@ -25,6 +25,11 @@ class OverDiskQuotaException extends Exception
 
 }
 
+class FileExistException extends Exception
+{
+    protected $message = 'File already exists.';
+}
+
 class CcFiles extends BaseCcFiles {
 
     const MUSIC_DIRS_STOR_PK = 1;
@@ -131,6 +136,12 @@ class CcFiles extends BaseCcFiles {
      */
     private static function createAndImport($fileArray, $filePath, $originalFilename, $copyFile=false)
     {
+        if (CcFilesQuery::create()
+            ->filterByDbMd5(md5_file($filePath))
+            ->findOne()) {
+            throw new FileExistException();
+        }
+
         $file = new CcFiles();
 
         try
